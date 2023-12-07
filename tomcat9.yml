@@ -16,3 +16,6 @@
       ansible.builtin.get_url:
         url: https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war
         dest: /var/lib/tomcat9/webapps
+        mode: '0644'
+        owner: tomcat
+        group: tomcat
