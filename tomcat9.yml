@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: install tomcat9
+      package:
+        name: tomcat9
+        state: latest
+
+    - name: service tomcat9 enable
+        service: tomcat9
+        state: started
+        enabled: true
+
+    - name: Download file with custom HTTP headers
+      ansible.builtin.get_url:
+        url: https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war
+        dest: /var/lib/tomcat9/webapps
