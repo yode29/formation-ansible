@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: install liste package
+      package:
+        name: 
+          - {{ package_a_install }}
+        state: latest
