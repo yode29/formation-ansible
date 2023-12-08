@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+    - name: install liste package
+      package:
+        name: "{{ item }}"
+        loop: "{{ paquet.split }}"
