@@ -1,0 +1,39 @@
+- hosts: all
+    tasks:
+    - name: modification hostname
+      ansible.builtin.hostname:
+        name: yoan
+        
+    - name: Dowload filebeat
+      ansible.builtin.get_url:
+        url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.11.2-amd64.deb
+        dest: /var/tm/filebeat-8.11.2-amd64.deb
+        
+    - name: Install filebeat
+      ansible.builtin.apt:
+        deb: /var/tm/filebeat-8.11.2-amd64.deb
+
+    - name: template filebeat.yml
+      template:
+        src: filebeat.yml
+        dest: /etc/filebeat.filebeat.yml
+        notify: restart_filebeat
+    
+    - name: template system.yml
+      template:
+        src: system.yml
+        dest: /etc/filebeat/modules.d/system.yml
+        notify: restart_filebeat
+
+    - name: verification si service filebeat démarré
+      ansible.builtin.service:
+        name: filebeat
+        state: started
+
+    handlers:
+    - name: restart_filebeat
+      service:
+        name: filebeat
+        state: restart
+      src:
+      dest: /etc/filebeat/filebeat.yml
