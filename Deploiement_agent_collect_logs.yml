@@ -30,7 +30,7 @@
         name: filebeat
         state: started
 
-    handlers:
+  handlers:
     - name: restart_filebeat
       service:
         name: filebeat
