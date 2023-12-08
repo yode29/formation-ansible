@@ -1,5 +1,5 @@
 - hosts: all
-    tasks:
+  tasks:
     - name: modification hostname
       ansible.builtin.hostname:
         name: yoan
@@ -21,7 +21,7 @@
     
     - name: template system.yml
       template:
-        src: system.yml
+        src: system_filebeat.yml
         dest: /etc/filebeat/modules.d/system.yml
         notify: restart_filebeat
 
