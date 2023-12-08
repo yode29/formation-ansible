@@ -15,13 +15,13 @@
 
     - name: template filebeat.yml
       template:
-        src: filebeat.yml
+        src: template/filebeat.yml
         dest: /etc/filebeat.filebeat.yml
       notify: restart_filebeat
     
     - name: template system.yml
       template:
-        src: system_filebeat.yml
+        src: template/system_filebeat.yml
         dest: /etc/filebeat/modules.d/system.yml
       notify: restart_filebeat
 
