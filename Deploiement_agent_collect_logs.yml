@@ -34,4 +34,4 @@
     - name: restart_filebeat
       service:
         name: filebeat
-        state: restart
+        state: restarted
